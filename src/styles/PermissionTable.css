@@ -1,0 +1,23 @@
+.permission-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 15em;
+  }
+  
+  .permission-table th,
+  .permission-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .permission-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .permission-table td input[type="checkbox"] {
+    margin: 0;
+  }
+  
