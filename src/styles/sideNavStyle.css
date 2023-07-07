@@ -1,89 +1,66 @@
+/* sideNavStyle.css */
+
 .sidenav {
+  background-color: #f1f1f1;
+  width: 250px;
   height: 100%;
-  width: 200px;
   position: fixed;
-  z-index: 1;
   top: 0;
   left: 0;
-  background-color: #e091e0;
-  overflow-x: hidden;
-  padding-top: 20px;
-  transition: width 0.3s ease-in-out;
+  transition: 0.5s;
+  padding: 20px;
+  z-index: 999;
 }
 
-.sidenav a {
-  padding: 12px 16px;
-  text-decoration: none;
-  font-size: 16px;
-  color: #333;
-  display: block;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.sidenav a:hover {
-  background-color: rgba(117, 110, 110, 0.828);
+.sidenav.open {
+  width: 0;
 }
 
 .toggle-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+  background-color: transparent;
   border: none;
-  padding: 5px;
   cursor: pointer;
-  z-index: 2;
-  transition: transform 0.3s ease-in-out;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  outline: none;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .toggle-btn i {
-  font-size: 20px;
-  color: #333;
+  color: #555;
 }
 
-.open {
-  width: 250px;
+.nav-links {
+  margin-top: 50px;
 }
 
-.open .toggle-btn {
-  display: none;
+.nav-links h1 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #555;
 }
 
-/* Added styles for the close button */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+.nav-links button {
+  background-color: transparent;
   border: none;
-  padding: 5px;
+  color: #555;
   cursor: pointer;
-  z-index: 2;
-  transition: transform 0.3s ease-in-out;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
 }
 
-.close-btn i {
-  font-size: 20px;
-  color: #333;
-}
-
-@media (max-width: 576px) {
-  .sidenav {
-    padding-top: 60px;
-  }
-
-  .sidenav a {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  .toggle-btn,
-  .close-btn {
-    top: 20px;
-  }
-
-  .toggle-btn i,
-  .close-btn i {
-    font-size: 18px;
-  }
+.nav-links button:hover {
+  color: #000;
+  background-color: #ddd;
 }
