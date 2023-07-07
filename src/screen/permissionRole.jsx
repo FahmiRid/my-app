@@ -36,6 +36,8 @@ const PermissionTable = () => {
     },
   });
 
+  const username = 'fahmi';
+
   // Handle checkbox change
   const handleCheckboxChange = (role, permission) => {
     setPermissions((prevPermissions) => ({
@@ -50,7 +52,7 @@ const PermissionTable = () => {
   // Render the table view and checkboxes
   return (
     <div>
-        <SideNav />
+        <SideNav username={username}/>
 
     <table className="permission-table">
       <thead>

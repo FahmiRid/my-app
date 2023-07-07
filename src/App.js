@@ -7,6 +7,7 @@ import Home from "./screen/home";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
+  localStorage.setItem ('admin', 'staff')
   return (
     <BrowserRouter> 
     <Routes>
