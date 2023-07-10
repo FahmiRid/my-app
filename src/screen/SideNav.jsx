@@ -25,10 +25,8 @@ const SideNav = ({ username }) => {
     }
   };
 
-  const handleUserListToogle = () => {
-    if (username === "fahmi" || username === "ridwan") {
+ const handleUserListToogle = () => {
       navigate("/userList");
-    }
   };
 
   const handlePermissionRoleToogle = () => {
@@ -39,6 +37,10 @@ const SideNav = ({ username }) => {
     }
 
   };
+
+  const handleAddRoleToogle = () => {
+    navigate("/addRole");
+  }
 
   // console.log("username ==>", username);x`
   return (
@@ -55,6 +57,8 @@ const SideNav = ({ username }) => {
           <button onClick={handlePermissionRoleToogle}>Permission Role</button>
 
           <button onClick={handleUserListToogle}>User List</button>
+
+          <button onClick={handleAddRoleToogle}>Add Role</button>
 
           <button onClick={handleLogoutToogle}>Logout</button>
         </div>

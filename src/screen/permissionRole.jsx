@@ -54,7 +54,7 @@ const PermissionTable = () => {
     <div>
         <SideNav username={username}/>
 
-    <table className="permission-table">
+    <table className="permission-table" username={username}>
       <thead>
         <tr>
           <th>Role</th>

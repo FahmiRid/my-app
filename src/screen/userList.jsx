@@ -2,18 +2,17 @@ import React from "react";
 import SideNav from "./SideNav";
 import "../styles/userListStyle.css";
 
-function userList() {
-  const username = "fahmi";
-  const username1 = "ridwan";
+function UserList() {
+  const username = ('fahmi' || 'ridwan');
   return (
     <div>
-      <SideNav username={username} username1={username1} />
+      <SideNav username={username} />
       <div className="center">
-        <h1 style={{color: "black"}}>User List</h1>
-        <p>this is user list testing</p>
+        <h1 style={{ color: "black" }}>User List</h1>
+        <p>This is the user list page.</p>
       </div>
     </div>
   );
 }
 
-export default userList;
+export default UserList;
