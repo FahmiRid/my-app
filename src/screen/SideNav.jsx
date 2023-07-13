@@ -39,7 +39,13 @@ const SideNav = ({ username }) => {
   };
 
   const handleAddRoleToogle = () => {
-    navigate("/addRole");
+    if (username === 'fahmi') {
+      navigate("/addRole");
+    }
+    else {
+      return null;
+    }
+    
   }
 
   // console.log("username ==>", username);x`
