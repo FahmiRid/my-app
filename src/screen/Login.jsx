@@ -70,7 +70,7 @@ const Login = () => {
         <div className="logo">
           <img src={Images} alt=" Logo" />
         </div>
-        <h1>Welcome back! </h1>
+        <h1>Welcome to my-app </h1>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="input-container">
             <input
@@ -88,7 +88,14 @@ const Login = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          <button type="submit">Login</button>
+          {/* <button type="submit">Login</button> */}
+          <a className="fancy" onClick={handleSubmit}>
+            <span className="top-key"></span>
+            <span className="text">Login</span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
+          </a>
+
         </form>
         <div className="footer">
           <span>Need an account?</span>

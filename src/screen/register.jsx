@@ -8,6 +8,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("staff"); // Set default role as "staff"
+  const [darkMode, setDarkMode] = useState(false); // State for dark mode
   const navigate = useNavigate();
 
   const handleUsernameChange = event => {
@@ -20,6 +21,10 @@ const Register = () => {
 
   const handleRoleChange = event => {
     setRole(event.target.value);
+  };
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
   };
 
   const handleSubmit = async event => {
@@ -50,10 +55,16 @@ const Register = () => {
     }
   };
 
+   // Apply dark mode styles dynamically
+   const containerClassName = darkMode ? "register-container dark" : "register-container";
+   const cardClassName = darkMode ? "register-card dark" : "register-card";
+ 
+
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <h1>Register</h1>
+    <div className={containerClassName}>
+      <div className={cardClassName}>
+        <h1 className="register-font">Register</h1>
+        <input type="checkbox" className="dark-mode-toggle" onClick={handleDarkModeToggle}></input>
         <form className="register-form" onSubmit={handleSubmit}>
           <div className="input-container">
             <input

@@ -1,84 +1,193 @@
 .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .register-card {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 400px;
-    max-width: 90%;
-  }
-  
-  .register-card h1 {
-    margin-bottom: 30px;
-    color: #333;
-  }
-  
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .input-container {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .input-container input,
-  .input-container select {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    background-color: #f8f8f8;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .input-container input:focus,
-  .input-container select:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-  }
-  
-  .input-container label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-  
-  button[type="submit"] {
-    width: 100%;
-    padding: 12px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  .Toastify__toast {
-    border-radius: 5px;
-  }
-  
-  .Toastify__toast--success {
-    background-color: #28a745;
-  }
-  
-  .Toastify__toast--error {
-    background-color: #dc3545;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-card {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+  max-width: 90%;
+}
+
+.register-card h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-container input,
+.input-container select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #f8f8f8;
+  transition: box-shadow 0.3s ease;
+}
+
+.input-container input:focus,
+.input-container select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.input-container label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.register-container {
+  /* Default styles for light mode */
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.register-card {
+  /* Default styles for light mode */
+  background-color: #fff;
+}
+
+.dark {
+  /* Styles for dark mode */
+  background-color: #333;
+  color: #fff;
+}
+
+.dark .register-card {
+  /* Styles for dark mode */
+  background-color: #222;
+}
+
+.dark .register-form input,
+.dark .register-form select {
+  /* Styles for dark mode */
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode-toggle {
+  /* Styles for dark mode toggle button */
+  background-color: #fff;
+  color: #333;
+  display: block;
+  margin-bottom: 1.5em;
+  font-size: 1em;
+}
+
+.dark-mode-toggle {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.75em;
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset;
+  color: #fdea7b;
+  display: inline-flex;
+  align-items: center;
+  margin: auto;
+  padding: 0.15em;
+  width: 3em;
+  height: 1.5em;
+  transition: background-color 0.1s 0.3s ease-out, box-shadow 0.1s 0.3s ease-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.dark-mode-toggle:before, .dark-mode-toggle:after {
+  content: "";
+  display: block;
+}
+
+.dark-mode-toggle:before {
+  background-color: #d7d7d7;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  transition: background-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+  z-index: 1;
+}
+
+.dark-mode-toggle:after {
+  background: linear-gradient(transparent 50%, rgba(0,0,0,0.15) 0) 0 50% / 50% 100%,
+		repeating-linear-gradient(90deg,#bbb 0,#bbb,#bbb 20%,#999 20%,#999 40%) 0 50% / 50% 100%,
+		radial-gradient(circle at 50% 50%,#888 25%, transparent 26%);
+  background-repeat: no-repeat;
+  border: 0.25em solid transparent;
+  border-left: 0.4em solid #d8d8d8;
+  border-right: 0 solid transparent;
+  transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+  transform: translateX(-22.5%);
+  transform-origin: 25% 50%;
+  width: 1.2em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+/* Checked */
+.dark-mode-toggle:checked {
+  background-color: rgba(0,0,0,0.45);
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.1) inset;
+}
+
+.dark-mode-toggle:checked:before {
+  background-color: currentColor;
+  transform: translateX(125%)
+}
+
+.dark-mode-toggle:checked:after {
+  border-left-color: currentColor;
+  transform: translateX(-2.5%) rotateY(180deg);
+}
+/* Other States */
+.dark-mode-toggle:focus {
+	/* Usually an anti-A11Y practice but set to remove an annoyance just for this demo */
+  outline: 0;
+}
+
+
+
+
+
+.Toastify__toast {
+  border-radius: 5px;
+}
+
+.Toastify__toast--success {
+  background-color: #28a745;
+}
+
+.Toastify__toast--error {
+  background-color: #dc3545;
+}
