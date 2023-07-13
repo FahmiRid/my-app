@@ -5,11 +5,12 @@ import StaffPage from "./screen/staffPage";
 import UserList from "./screen/userList";
 import Home from "./screen/home";
 import Role from "./screen/addRole";
+import Register from "./screen/register";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const username = "Fahmi";
-  const isAdmin = localStorage.getItem('admin') === 'staff';
+  const isAdmin = localStorage.getItem('admin');
   const isAllowed = username === "Fahmi" && isAdmin;
 
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/staffPage" element={<StaffPage />} />
         <Route path="/userList" element={<UserList />} />
         <Route path="/addRole" element={<Role />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
