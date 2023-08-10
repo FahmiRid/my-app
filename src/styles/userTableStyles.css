@@ -22,3 +22,35 @@ table {
   .editAction {
     color: blue;
   }
+
+  /* userTableStyles.css */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+  background-color: #2980b9;
+}
+
+.pagination span {
+  margin: 0 1rem;
+  font-size: 1.2rem;
+}
