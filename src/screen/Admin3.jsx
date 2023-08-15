@@ -15,7 +15,7 @@ export default function Admin3() {
     <div className="center"> 
     <Header as='h1'>Third Page</Header>
     <Card.Group>
-      <Card>
+      <Card className="ui-cards">
         <Card.Content>
           <Card.Header>Foreign Currency</Card.Header>
           <Card.Meta>Total Invesment</Card.Meta>

@@ -30,9 +30,9 @@ export default function Admin() {
 
   return (
     <div className="center">
+       <Header as="h1">First Page</Header>
       <Card.Group>
-        <Header as="h1">First Page</Header>
-        <Card>
+        <Card className="ui-cards">
           <Card.Content>
             <Card.Header>Foreign Currency</Card.Header>
             <Card.Meta>Total Invesment</Card.Meta>

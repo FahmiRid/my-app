@@ -14,7 +14,7 @@ export default function Admin3() {
   return (
     <div className="center"> 
     <Card.Group>
-      <Card>
+      <Card className="ui-cards">
         <Card.Content>
           <Card.Header>Successful! 🥳</Card.Header>
           <Card.Description>
