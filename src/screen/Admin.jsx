@@ -1,7 +1,7 @@
 import { React, useEffect, } from "react";
 import "../styles/admin1.css";
 import "semantic-ui-css/semantic.min.css";
-import { Button, Card } from "semantic-ui-react";
+import { Button, Card , Header } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
@@ -16,7 +16,7 @@ export default function Admin() {
     const handleMessageFromWebView = event => {
       // console.log("Received message from WebView:", event);
       if (event.data === "password_buy_AA") {
-        alert("Received message:" + JSON.stringify(event.data));
+        //alert("Received message:" + JSON.stringify(event.data));
         navigate("/admin2");
       }
     };
@@ -30,6 +30,7 @@ export default function Admin() {
 
   return (
     <div className="center">
+      <Header as='h1'>First Page</Header>
       <Card.Group>
         <Card>
           <Card.Content>

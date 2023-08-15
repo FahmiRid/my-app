@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import "semantic-ui-css/semantic.min.css";
+import { Button, Card, Header } from "semantic-ui-react";
+import "../styles/admin1.css";
 
 export default function Admin2() {
   const navigate = useNavigate();
@@ -9,14 +12,26 @@ export default function Admin2() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <h1>Second Page</h1>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={navigateToAdmin3}
-      >
-        Next
-      </button>
-    </div>
+    <div className="center"> 
+    <Header as='h1'>Second Page</Header>
+    <Card.Group>
+      <Card>
+        <Card.Content>
+          <Card.Header>Foreign Currency</Card.Header>
+          <Card.Meta>Total Invesment</Card.Meta>
+          <Card.Description>
+            <strong>RM45,000,00</strong>
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <div className="ui two buttons">
+            <Button basic color="green" onClick={navigateToAdmin3}> 
+              Next
+            </Button>
+          </div>
+        </Card.Content>
+      </Card>
+    </Card.Group>
+  </div>
   );
 }
