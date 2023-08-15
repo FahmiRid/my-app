@@ -6,7 +6,7 @@ import "../styles/admin1.css";
 export default function Admin3() {
 
   const sendMessagetoSuccessful = () => {
-    const message = "password_confirm";
+    const message = "done";
     window.ReactNativeWebView && window.ReactNativeWebView.postMessage(message);
     console.log("received", message);
   };
