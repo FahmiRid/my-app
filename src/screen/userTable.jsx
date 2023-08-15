@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../styles/userTableStyles.css";
+import NextPage from "../images/next.png";
+import PreviousPage from "../images/previous.png";
 
 function UserTable() {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5; // You can adjust this number as needed
-
+  const [selectedRole, setSelectedRole] = useState("all");
+  const usersPerPage = 5;
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchUsers();
@@ -13,7 +16,7 @@ function UserTable() {
 
   async function fetchUsers() {
     try {
-      const response = await fetch('/users.json'); // Replace with the actual path to your users.json file
+      const response = await fetch("/users.json"); // Replace with the actual path to your users.json file
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -21,9 +24,37 @@ function UserTable() {
     }
   }
 
+  const filteredUsers = users.filter(user => {
+    if (selectedRole !== "all" && user.role !== selectedRole) {
+      return false;
+    }
+    if (searchTerm !== "" && !user.role.includes(searchTerm) && !user.username.includes(searchTerm)) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <div>
+      <div className="filter">
+        <label>Filter by Role:</label>
+        <select
+          value={selectedRole}
+          onChange={e => setSelectedRole(e.target.value)}
+        >
+          <option value="all">All</option>
+          <option value="admin">Admin</option>
+          <option value="staff">Staff</option>
+        </select>
+
+        <label>Search:</label>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+          placeholder="Search by username"
+        />
+      </div>
       <table>
         <thead>
           <tr>
@@ -33,7 +64,7 @@ function UserTable() {
           </tr>
         </thead>
         <tbody>
-          {users
+          {filteredUsers
             .slice((currentPage - 1) * usersPerPage, currentPage * usersPerPage)
             .map((user, index) => (
               <tr key={index}>
@@ -48,17 +79,18 @@ function UserTable() {
       </table>
       <div className="pagination">
         <button
+          className="transparent-button"
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          Previous
+          <img className="previous" src={PreviousPage} alt="Previous" />
         </button>
-        <span>Page {currentPage}</span>
         <button
+          className="transparent-button"
           disabled={currentPage === Math.ceil(users.length / usersPerPage)}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          Next
+          <img className="next" src={NextPage} alt="Next" />
         </button>
       </div>
     </div>

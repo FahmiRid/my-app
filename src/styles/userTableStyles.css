@@ -33,7 +33,7 @@ table {
 }
 
 .pagination button {
-  background-color: #3498db;
+  background-color: #f9f9f900;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -42,15 +42,30 @@ table {
 }
 
 .pagination button:disabled {
-  background-color: #bdc3c7;
+  background-color: #bdc3c700;
   cursor: not-allowed;
 }
 
 .pagination button:not(:disabled):hover {
-  background-color: #2980b9;
+  background-color: #fefefe00;
 }
 
 .pagination span {
   margin: 0 1rem;
   font-size: 1.2rem;
+}
+
+.previous {
+
+}
+
+.next { 
+
+}
+
+.transparent-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
