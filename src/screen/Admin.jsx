@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import {React,  useEffect } from "react";
 import "../styles/admin1.css";
 import "semantic-ui-css/semantic.min.css";
 import { Button, Card, Image } from "semantic-ui-react";
@@ -9,6 +9,33 @@ export default function Admin() {
     window.ReactNativeWebView && window.ReactNativeWebView.postMessage(message);
     console.log("received", message);
   };
+
+  
+
+  // useEffect(() => {
+  //   const retrieveMessage = () => {
+  //     document.addEventListener("message", function (event) {
+  //       setTimeout(function(){document.postMessage("WebView message")});
+  //       console.log('retrieve', event)
+  //     }, false);
+  //     console.log('retrieveMessage')
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const handleMessageFromWebView = event => {
+      // Handle the received message from the WebView
+      // console.log("Received message from WebView:", event.data);
+      alert("Received message from WebView:", event);
+    };
+
+    window.addEventListener("message", handleMessageFromWebView);
+
+    return () => {
+      window.removeEventListener("message", handleMessageFromWebView);
+    };
+  }, []);
+
 
   return (
     <div className="center">
