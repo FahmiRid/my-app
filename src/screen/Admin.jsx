@@ -25,8 +25,8 @@ export default function Admin() {
   useEffect(() => {
     const handleMessageFromWebView = event => {
       // Handle the received message from the WebView
-      // console.log("Received message from WebView:", event.data);
-      alert("Received message from WebView:", event);
+      // console.log("Received message from WebView:", event);
+      alert("Received message from WebView:", event.data);
     };
 
     window.addEventListener("message", handleMessageFromWebView);
