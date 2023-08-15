@@ -12,6 +12,7 @@ import Admin from "./screen/Admin";
 import Admin2 from "./screen/Admin2";
 import Admin3 from "./screen/Admin3";
 import Admin4 from "./screen/Admin4";
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/admin2" element={<Admin2 />} />
         <Route path="/admin3" element={<Admin3 />} />
         <Route path="/admin4" element={<Admin4 />} />
+
       </Routes>
     </BrowserRouter>
   );
