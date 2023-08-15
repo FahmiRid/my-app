@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import '../styles/admin1.css'
 
 export default function Admin() {
   useEffect(() => {
@@ -31,7 +32,8 @@ export default function Admin() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="center">
+    <div className="border-box">
       <h1>First Page</h1>
       <button
         onClick={sendMessagetoReactNative}
@@ -39,6 +41,7 @@ export default function Admin() {
       >
         Buy Sell
       </button>
+    </div>
     </div>
   );
 }

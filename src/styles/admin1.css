@@ -1,0 +1,45 @@
+.center {
+    text-align: center;
+    padding: 1rem; /* Add some padding for spacing */
+  }
+  
+  .border-box {
+    max-width: 80%; /* Adjust the maximum width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 13rem;
+    border-radius: 23px;
+    background: #d9d9d968;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    color: black;
+    text-align: center; /* Center the text */
+    margin-top: -12rem;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .border-box {
+      max-width: 90%; /* Adjust for smaller screens */
+    }
+  
+    h1 {
+      margin-left: 0; /* Reset margin for smaller screens */
+      font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  /* Media Query for iPhone XR */
+  @media (max-width: 414px) {
+    .border-box {
+      max-width: 90%; /* Adjust the maximum width for smaller screens */
+    }
+  
+    h1 {
+      margin-left: 0; /* Reset margin for smaller screens */
+      font-size: 1.3rem; /* Adjust font size for smaller screens */
+    }
+  
+    /* Additional adjustments if needed */
+  }
