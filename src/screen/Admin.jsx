@@ -10,6 +10,7 @@ export default function Admin() {
 
     // Add the event listener when the component mounts
     window.addEventListener("sendMessageToReactNative", eventListener);
+    
 
     // Clean up the event listener when the component unmounts
     return () => {
