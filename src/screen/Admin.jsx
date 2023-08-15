@@ -26,7 +26,7 @@ export default function Admin() {
     const handleMessageFromWebView = event => {
       // Handle the received message from the WebView
       // console.log("Received message from WebView:", event);
-      alert("Received message from WebView:", event.data);
+      alert("Received message from WebView:", JSON.stringify(event));
     };
 
     window.addEventListener("message", handleMessageFromWebView);
