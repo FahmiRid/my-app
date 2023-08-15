@@ -16,7 +16,7 @@ export default function Admin4() {
     const handleMessageFromWebView = event => {
       // console.log("Received message from WebView:", event);
       if (event.data === "password_confirm_AA") {
-        // alert("Received message:" + JSON.stringify(event.data));
+        alert("Received message:" + JSON.stringify(event.data));
         navigate("/success");
       }
     };

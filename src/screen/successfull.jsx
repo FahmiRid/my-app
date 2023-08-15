@@ -10,9 +10,6 @@ const sendMessagetoSuccessful = () => {
     console.log("received", message);
   };
 
-
-
-
   return (
     <div className="center">
       {/* <Header as='h1'>Successful Page</Header> */}
