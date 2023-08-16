@@ -32,7 +32,7 @@ export default function Admin() {
     <div className="center">
        <Header as="h1">First Page</Header>
       <Card.Group>
-        <Card className="ui-cards">
+        <Card className="cards">
           <Card.Content>
             <Card.Header>Foreign Currency</Card.Header>
             <Card.Meta>Total Invesment</Card.Meta>

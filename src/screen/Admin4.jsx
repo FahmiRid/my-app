@@ -33,7 +33,7 @@ export default function Admin4() {
     <div className="center"> 
     <Header as='h1'>Confirmation Page</Header>
     <Card.Group>
-      <Card className="ui-cards">
+      <Card className="cards">
         <Card.Content>
           <Card.Header>Foreign Currency</Card.Header>
           <Card.Meta>Total Invesment</Card.Meta>

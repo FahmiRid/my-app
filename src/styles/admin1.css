@@ -5,7 +5,7 @@
     margin-top: 20rem;
   }
 
-  .ui.cards {
+  .cards {
     display: flex;
     margin: -0.875em -0.5em;
     flex-wrap: wrap;
