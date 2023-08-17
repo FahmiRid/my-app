@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import MainDash3 from '../components/MainDash/MainDash3';
 import "semantic-ui-css/semantic.min.css";
 import { Button, Card, Header } from "semantic-ui-react";
 import "../styles/admin1.css";
@@ -12,26 +14,32 @@ export default function Admin3() {
   };
 
   return (
-    <div className="center"> 
-    <Header as='h1'>Third Page</Header>
-    <Card.Group>
-      <Card className="cards">
-        <Card.Content>
-          <Card.Header>Foreign Currency</Card.Header>
-          <Card.Meta>Total Invesment</Card.Meta>
-          <Card.Description>
-            <strong>RM45,000,00</strong>
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <div className="ui two buttons">
-            <Button basic color="green" onClick={navigateToAdmin4}> 
-              Next
-            </Button>
-          </div>
-        </Card.Content>
-      </Card>
-    </Card.Group>
-  </div>
+    <div className="App">
+      <div className="AppGlass">
+        <Sidebar />
+        <MainDash3 />
+      </div>
+    </div>
+  //   <div className="center"> 
+  //   <Header as='h1'>Third Page</Header>
+  //   <Card.Group>
+  //     <Card className="cards">
+  //       <Card.Content>
+  //         <Card.Header>Foreign Currency</Card.Header>
+  //         <Card.Meta>Total Invesment</Card.Meta>
+  //         <Card.Description>
+  //           <strong>RM45,000,00</strong>
+  //         </Card.Description>
+  //       </Card.Content>
+  //       <Card.Content extra>
+  //         <div className="ui two buttons">
+  //           <Button basic color="green" onClick={navigateToAdmin4}> 
+  //             Next
+  //           </Button>
+  //         </div>
+  //       </Card.Content>
+  //     </Card>
+  //   </Card.Group>
+  // </div>
   );
 }

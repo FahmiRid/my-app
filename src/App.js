@@ -1,4 +1,7 @@
 import "./App.css";
+import Sidebar from "./components/Sidebar";
+import MainDash from "./components/MainDash/MainDash";
+import RightSide from "./components/RigtSide/RightSide";
 import PermissionTable from "./screen/permissionRole";
 import Login from "./screen/Login";
 import StaffPage from "./screen/staffPage";
@@ -14,36 +17,41 @@ import Admin3 from "./screen/Admin3";
 import Admin4 from "./screen/Admin4";
 import Success from "./screen/successfull";
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const username = "Fahmi";
-  const isAdmin = localStorage.getItem('admin');
+  const isAdmin = localStorage.getItem("admin");
   const isAllowed = username === "Fahmi" && isAdmin;
 
   return (
-    <BrowserRouter> 
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        {/* {isAllowed && (
-         
+    <div>
+      <div>
+        {/* <Sidebar />
+          <MainDash />
+          <RightSide /> */}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Admin />} />
+            <Route path="/home" element={<Home />} />
+            {/* {isAllowed && (  
         )} */}
-        <Route path="/permissionRole" element={<PermissionTable />} />
-        <Route path="/staffPage" element={<StaffPage />} />
-        <Route path="/userList" element={<UserList />} />
-        <Route path="/addRole" element={<Role />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/SideNav2" element={<SideNav2 />} />
-        <Route path="/content" element={<Content />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin2" element={<Admin2 />} />
-        <Route path="/admin3" element={<Admin3 />} />
-        <Route path="/admin4" element={<Admin4 />} />
-        <Route path="/success" element={<Success />} />
-
-      </Routes>
-    </BrowserRouter>
+            {/* <Route path="/permissionRole" element={<PermissionTable />} />
+            <Route path="/staffPage" element={<StaffPage />} />
+            <Route path="/userList" element={<UserList />} />
+            <Route path="/addRole" element={<Role />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/SideNav2" element={<SideNav2 />} />
+            <Route path="/content" element={<Content />} /> */}
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin2" element={<Admin2 />} />
+            <Route path="/admin3" element={<Admin3 />} />
+            <Route path="/admin4" element={<Admin4 />} />
+            <Route path="/success" element={<Success />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </div>
   );
 }
 
