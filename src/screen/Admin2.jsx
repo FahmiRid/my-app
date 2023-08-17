@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "semantic-ui-css/semantic.min.css";
-import { Button, Card, Header } from "semantic-ui-react";
-import Sidebar from "../components/Sidebar";
 import MainDash2 from "../components/MainDash/MainDash2";
-import RightSide from "../components/RigtSide/RightSide";
 import "../styles/admin1.css";
+import Logo from "../imgs/mbb.png";
+// import "semantic-ui-css/semantic.min.css";
+// import { Button, Card, Header } from "semantic-ui-react";
+// import Sidebar from "../components/Sidebar";
 
 export default function Admin2() {
   // const navigate = useNavigate();
@@ -17,9 +17,11 @@ export default function Admin2() {
   return (
     <div className="App">
       <div className="AppGlass">
-          <Sidebar />
-          <MainDash2 />
-          {/* <RightSide /> */}
+        <div className="logo">
+          <img src={Logo} alt="logo" />
+          <span>Maybank</span>
+        </div>
+        <MainDash2 />
       </div>
     </div>
     //   <div className="center">

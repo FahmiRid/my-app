@@ -3,9 +3,10 @@ import "../styles/admin1.css";
 import "semantic-ui-css/semantic.min.css";
 import { Button, Card, Header } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+// import Sidebar from "../components/Sidebar";
 import MainDash from "../components/MainDash/MainDash";
 import RightSide from "../components/RigtSide/RightSide";
+import Logo from "../imgs/mbb.png";
 
 export default function Admin() {
   // const navigate = useNavigate();
@@ -34,7 +35,12 @@ export default function Admin() {
   return (
     <div className="App">
       <div className="AppGlass">
-        <Sidebar />
+      <div className="logo">
+        <img src={Logo} alt="logo" />
+        <span>
+          Maybank
+        </span>
+      </div>
         <MainDash />
         <RightSide />
       </div>
