@@ -99,20 +99,14 @@ import {
     {
       img: img1,
       name: "Andrew Thomas",
-      noti: "has ordered Apple smart watch 2500mh battery.",
+      noti: "has buy ordered RM20,000,00",
       time: "25 seconds ago",
     },
     {
       img: img2,
       name: "James Bond",
-      noti: "has received Samsung gadget for charging battery.",
+      noti: "has sell ordered RM14,456.00",
       time: "30 minutes ago",
-    },
-    {
-      img: img3,
-      name: "Iron Man",
-      noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
-      time: "2 hours ago",
     },
   ];
   
