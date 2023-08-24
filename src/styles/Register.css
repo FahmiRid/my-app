@@ -125,7 +125,8 @@ button[type="submit"]:hover {
   appearance: none;
 }
 
-.dark-mode-toggle:before, .dark-mode-toggle:after {
+.dark-mode-toggle:before,
+.dark-mode-toggle:after {
   content: "";
   display: block;
 }
@@ -140,9 +141,9 @@ button[type="submit"]:hover {
 }
 
 .dark-mode-toggle:after {
-  background: linear-gradient(transparent 50%, rgba(0,0,0,0.15) 0) 0 50% / 50% 100%,
-		repeating-linear-gradient(90deg,#bbb 0,#bbb,#bbb 20%,#999 20%,#999 40%) 0 50% / 50% 100%,
-		radial-gradient(circle at 50% 50%,#888 25%, transparent 26%);
+  background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.15) 0) 0 50% / 50% 100%,
+    repeating-linear-gradient(90deg, #bbb 0, #bbb, #bbb 20%, #999 20%, #999 40%) 0 50% / 50% 100%,
+    radial-gradient(circle at 50% 50%, #888 25%, transparent 26%);
   background-repeat: no-repeat;
   border: 0.25em solid transparent;
   border-left: 0.4em solid #d8d8d8;
@@ -157,8 +158,8 @@ button[type="submit"]:hover {
 
 /* Checked */
 .dark-mode-toggle:checked {
-  background-color: rgba(0,0,0,0.45);
-  box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.1) inset;
+  background-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset;
 }
 
 .dark-mode-toggle:checked:before {
@@ -170,16 +171,12 @@ button[type="submit"]:hover {
   border-left-color: currentColor;
   transform: translateX(-2.5%) rotateY(180deg);
 }
+
 /* Other States */
 .dark-mode-toggle:focus {
-	/* Usually an anti-A11Y practice but set to remove an annoyance just for this demo */
+  /* Usually an anti-A11Y practice but set to remove an annoyance just for this demo */
   outline: 0;
 }
-
-
-
-
-
 .Toastify__toast {
   border-radius: 5px;
 }
@@ -190,4 +187,8 @@ button[type="submit"]:hover {
 
 .Toastify__toast--error {
   background-color: #dc3545;
+}
+
+.availability-message {
+  color: red;
 }

@@ -36,13 +36,14 @@ function App() {
             <Route path="/home" element={<Home />} />
             {/* {isAllowed && (  
         )} */}
-            {/* <Route path="/permissionRole" element={<PermissionTable />} />
+            <Route path="/permissionRole" element={<PermissionTable />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/staffPage" element={<StaffPage />} />
             <Route path="/userList" element={<UserList />} />
             <Route path="/addRole" element={<Role />} />
             <Route path="/register" element={<Register />} />
             <Route path="/SideNav2" element={<SideNav2 />} />
-            <Route path="/content" element={<Content />} /> */}
+            <Route path="/content" element={<Content />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin2" element={<Admin2 />} />
             <Route path="/admin3" element={<Admin3 />} />

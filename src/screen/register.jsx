@@ -9,11 +9,28 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("staff"); // Set default role as "staff"
   const [darkMode, setDarkMode] = useState(false); // State for dark mode
+  const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
+
   const navigate = useNavigate();
 
-  const handleUsernameChange = event => {
-    setUsername(event.target.value);
+  const handleUsernameChange = async event => {
+    const newUsername = event.target.value;
+    setUsername(newUsername);
+
+    try {
+      const response = await fetch(`http://localhost:5000/check-username?username=${newUsername}`);
+      if (response.ok) {
+        const data = await response.json();
+        setIsUsernameAvailable(data.isAvailable);
+      } else {
+        setIsUsernameAvailable(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setIsUsernameAvailable(false);
+    }
   };
+
 
   const handlePasswordChange = event => {
     setPassword(event.target.value);
@@ -55,10 +72,10 @@ const Register = () => {
     }
   };
 
-   // Apply dark mode styles dynamically
-   const containerClassName = darkMode ? "register-container dark" : "register-container";
-   const cardClassName = darkMode ? "register-card dark" : "register-card";
- 
+  // Apply dark mode styles dynamically
+  const containerClassName = darkMode ? "register-container dark" : "register-container";
+  const cardClassName = darkMode ? "register-card dark" : "register-card";
+
 
   return (
     <div className={containerClassName}>
@@ -73,6 +90,7 @@ const Register = () => {
               value={username}
               onChange={handleUsernameChange}
             />
+            {!isUsernameAvailable && <p className="availability-message">Username already exist</p>}
           </div>
           <div className="input-container">
             <input
@@ -90,7 +108,9 @@ const Register = () => {
               <option value="user">User</option>
             </select>
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" disabled={!isUsernameAvailable}>
+            Register
+          </button>
         </form>
         <ToastContainer />
       </div>
