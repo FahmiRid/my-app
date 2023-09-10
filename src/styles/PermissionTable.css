@@ -1,3 +1,6 @@
+/* In your CSS or SCSS file */
+@import '~font-awesome/css/font-awesome.min.css';
+
 .permission-table {
   width: 70%;
   border-collapse: collapse;

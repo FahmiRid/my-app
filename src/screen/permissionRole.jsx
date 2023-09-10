@@ -4,8 +4,8 @@ import SideNav from "./SideNav";
 import Axios from 'axios';
 
 const PermissionTable = () => {
-
   const [permissions, setPermissions] = useState([]);
+  const [expandedPermissions, setExpandedPermissions] = useState([]); // To track expanded parent permissions
   const username = "fahmi";
 
   useEffect(() => {
@@ -27,6 +27,14 @@ const PermissionTable = () => {
       });
   }, []);
 
+  // Function to toggle the display of child permissions for a parent
+  const toggleExpand = (parentId) => {
+    setExpandedPermissions((prevState) =>
+      prevState.includes(parentId)
+        ? prevState.filter((id) => id !== parentId) // Hide child permissions
+        : [...prevState, parentId] // Show child permissions
+    );
+  };
 
   return (
     <div>
@@ -44,35 +52,82 @@ const PermissionTable = () => {
             </tr>
           </thead>
           <tbody>
-            {permissions.map((permission) => (
-              <tr key={permission.permission_id}>
-                <td>{permission.permission_description}</td>
-                <td>
-                  <label className="container">
-                    <input type="checkbox" />
-                    <div className="checkmark"></div>
-                  </label>
-                </td>
-                <td>
-                  <label className="container">
-                    <input type="checkbox" />
-                    <div className="checkmark"></div>
-                  </label>
-                </td>
-                <td>
-                  <label className="container">
-                    <input type="checkbox" />
-                    <div className="checkmark"></div>
-                  </label>
-                </td>
-                <td>
-                  <label className="container">
-                    <input type="checkbox" />
-                    <div className="checkmark"></div>
-                  </label>
-                </td>
-              </tr>
-            ))}
+            {permissions
+              .filter((permission) => permission.is_parent) // Only display parent permissions
+              .map((permission) => (
+                <React.Fragment key={permission.permission_id}>
+                  <tr>
+                    <td>
+                      <div onClick={() => toggleExpand(permission.permission_id)}>
+                        {expandedPermissions.includes(permission.permission_id) ? (
+                          <i className="fa fa-chevron-up" style={{ marginRight: '1.5rem' }}></i> // Add spacing here
+                        ) : (
+                          <i className="fa fa-chevron-down" style={{ marginRight: '1.5rem' }}></i> // Add spacing here
+                        )}
+                        {permission.permission_description}
+                      </div>
+                    </td>
+                    <td>
+                      <label className="container">
+                        <input type="checkbox" />
+                        <div className="checkmark"></div>
+                      </label>
+                    </td>
+                    <td>
+                      <label className="container">
+                        <input type="checkbox" />
+                        <div className="checkmark"></div>
+                      </label>
+                    </td>
+                    <td>
+                      <label className="container">
+                        <input type="checkbox" />
+                        <div className="checkmark"></div>
+                      </label>
+                    </td>
+                    <td>
+                      <label className="container">
+                        <input type="checkbox" />
+                        <div className="checkmark"></div>
+                      </label>
+                    </td>
+                  </tr>
+                  {expandedPermissions.includes(permission.permission_id) && (
+                    // Render child permissions if expanded
+                    permissions
+                      .filter((child) => child.parent_permission_id === permission.permission_id)
+                      .map((child) => (
+                        <tr key={child.permission_id}>
+                          <td style={{ paddingLeft: '2rem' }}>{child.permission_description}</td> {/* Add left padding here */}
+                          <td>
+                            <label className="container">
+                              <input type="checkbox" />
+                              <div className="checkmark"></div>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="container">
+                              <input type="checkbox" />
+                              <div className="checkmark"></div>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="container">
+                              <input type="checkbox" />
+                              <div className="checkmark"></div>
+                            </label>
+                          </td>
+                          <td>
+                            <label className="container">
+                              <input type="checkbox" />
+                              <div className="checkmark"></div>
+                            </label>
+                          </td>
+                        </tr>
+                      ))
+                  )}
+                </React.Fragment>
+              ))}
           </tbody>
         </table>
       </div>
