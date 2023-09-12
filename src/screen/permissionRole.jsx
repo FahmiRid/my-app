@@ -32,17 +32,19 @@ const PermissionTable = () => {
     // Define the API URL for the backend endpoint you created
     const apiUrl = "http://localhost:5000/api/storeData";
 
-    // Merge parent and child permissions into a single array
-    const combinedPermissions = [
-      ...permissions, // Parent permissions
-      ...Object.values(childPermissions).map((childPermission) => ({
-        ...childPermission,
-      })), // Child permissions
-    ];
+    const permissionsToSend = permissions.map(permission => ({
+      permission_id: permission.permission_id,
+      permission: permission,
+      C: permission.C,
+      R: permission.R,
+      U: permission.U,
+      D: permission.D,
+      A: permission.A,
+    }));
 
     // Data to send to the backend API
     const dataToSend = {
-      permissionId: combinedPermissions,
+      permissionId: permissionsToSend,
     };
 
     // Make a POST request to the backend API
