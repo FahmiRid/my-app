@@ -64,24 +64,49 @@ const PermissionTable = () => {
     );
   };
 
-  // Function to handle checking/unchecking parent and child permissions
-  const handlePermissionChange = permission => {
+  // // Function to handle checking/unchecking parent and child permissions
+  // const handlePermissionChange = permission => {
+  //   const updatedPermissions = [...permissions];
+  //   const updatedPermission = updatedPermissions.find(
+  //     p => p.permission_id === permission.permission_id
+  //   );
+  //   if (updatedPermission) {
+  //     // Toggle the parent permission
+  //     updatedPermission.C = updatedPermission.C === 1 ? 0 : 1;
+
+  //     // Toggle child permissions if they exist
+  //     if (childPermissions[permission.permission_id]) {
+  //       childPermissions[permission.permission_id].forEach(childId => {
+  //         const childPermission = updatedPermissions.find(
+  //           p => p.permission_id === childId
+  //         );
+  //         if (childPermission) {
+  //           childPermission.C = updatedPermission.C;
+  //         }
+  //       });
+  //     }
+
+  //     setPermissions(updatedPermissions);
+  //   }
+  // };
+
+  const handlePermissionChange = (permission, type) => {
     const updatedPermissions = [...permissions];
     const updatedPermission = updatedPermissions.find(
-      p => p.permission_id === permission.permission_id
+      (p) => p.permission_id === permission.permission_id
     );
     if (updatedPermission) {
-      // Toggle the parent permission
-      updatedPermission.C = updatedPermission.C === 1 ? 0 : 1;
+      // Toggle the selected permission type (e.g., 'C', 'R', 'U', 'D', 'A')
+      updatedPermission[type] = updatedPermission[type] === 1 ? 0 : 1;
 
       // Toggle child permissions if they exist
       if (childPermissions[permission.permission_id]) {
-        childPermissions[permission.permission_id].forEach(childId => {
+        childPermissions[permission.permission_id].forEach((childId) => {
           const childPermission = updatedPermissions.find(
-            p => p.permission_id === childId
+            (p) => p.permission_id === childId
           );
           if (childPermission) {
-            childPermission.C = updatedPermission.C;
+            childPermission[type] = updatedPermission[type];
           }
         });
       }
@@ -136,7 +161,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.C === 1}
-                          onChange={() => handlePermissionChange(permission)}
+                          onChange={() => handlePermissionChange(permission, 'C')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -146,20 +171,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.U || permission.D === 1}
-                          onChange={e => {
-                            const newEdit = e.target.checked ? 1 : 0;
-                            const updatedPermissions = [...permissions];
-                            updatedPermissions.forEach(p => {
-                              if (
-                                p.parent_permission_id ===
-                                permission.permission_id
-                              ) {
-                                p.U = newEdit;
-                                p.D = newEdit;
-                              }
-                            });
-                            setPermissions(updatedPermissions);
-                          }}
+                          onChange={() => handlePermissionChange(permission, 'U')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -169,17 +181,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.R === 1}
-                          onChange={e => {
-                            const newRead = e.target.checked ? 1 : 0;
-                            const updatedPermissions = [...permissions];
-                            const updatedPermission = updatedPermissions.find(
-                              p => p.permission_id === permission.permission_id
-                            );
-                            if (updatedPermission) {
-                              updatedPermission.R = newRead;
-                              setPermissions(updatedPermissions);
-                            }
-                          }}
+                          onChange={() => handlePermissionChange(permission, 'R')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -189,17 +191,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.A === 1}
-                          onChange={e => {
-                            const newApprove = e.target.checked ? 1 : 0;
-                            const updatedPermissions = [...permissions];
-                            const updatedPermission = updatedPermissions.find(
-                              p => p.permission_id === permission.permission_id
-                            );
-                            if (updatedPermission) {
-                              updatedPermission.A = newApprove;
-                              setPermissions(updatedPermissions);
-                            }
-                          }}
+                          onChange={() => handlePermissionChange(permission, 'A')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -224,7 +216,7 @@ const PermissionTable = () => {
                                 checked={permissions.some(
                                   p =>
                                     p.parent_permission_id ===
-                                      permission.permission_id &&
+                                    permission.permission_id &&
                                     p.permission_id === child.permission_id &&
                                     p.C === 1
                                 )}
@@ -236,7 +228,7 @@ const PermissionTable = () => {
                                   updatedPermissions.forEach(p => {
                                     if (
                                       p.parent_permission_id ===
-                                        permission.permission_id &&
+                                      permission.permission_id &&
                                       p.permission_id === child.permission_id
                                     ) {
                                       p.C = newChildCreated;
@@ -255,7 +247,7 @@ const PermissionTable = () => {
                                 checked={permissions.some(
                                   p =>
                                     p.parent_permission_id ===
-                                      permission.permission_id &&
+                                    permission.permission_id &&
                                     p.permission_id === child.permission_id &&
                                     (p.U || p.D) === 1
                                 )}
@@ -265,7 +257,7 @@ const PermissionTable = () => {
                                   updatedPermissions.forEach(p => {
                                     if (
                                       p.parent_permission_id ===
-                                        permission.permission_id &&
+                                      permission.permission_id &&
                                       p.permission_id === child.permission_id
                                     ) {
                                       p.U = newChildEdit;
@@ -285,7 +277,7 @@ const PermissionTable = () => {
                                 checked={permissions.some(
                                   p =>
                                     p.parent_permission_id ===
-                                      permission.permission_id &&
+                                    permission.permission_id &&
                                     p.permission_id === child.permission_id &&
                                     p.R === 1
                                 )}
@@ -295,7 +287,7 @@ const PermissionTable = () => {
                                   updatedPermissions.forEach(p => {
                                     if (
                                       p.parent_permission_id ===
-                                        permission.permission_id &&
+                                      permission.permission_id &&
                                       p.permission_id === child.permission_id
                                     ) {
                                       p.R = newChildRead;
@@ -314,7 +306,7 @@ const PermissionTable = () => {
                                 checked={permissions.some(
                                   p =>
                                     p.parent_permission_id ===
-                                      permission.permission_id &&
+                                    permission.permission_id &&
                                     p.permission_id === child.permission_id &&
                                     p.A === 1
                                 )}
@@ -326,7 +318,7 @@ const PermissionTable = () => {
                                   updatedPermissions.forEach(p => {
                                     if (
                                       p.parent_permission_id ===
-                                        permission.permission_id &&
+                                      permission.permission_id &&
                                       p.permission_id === child.permission_id
                                     ) {
                                       p.A = newChildApprove;
