@@ -7,11 +7,7 @@ import "../styles/admin1.css";
 import Logo from "../imgs/mbb.png";
 
 export default function Success() {
-  // const sendMessagetoSuccessful = () => {
-  //   const message = "done";
-  //   window.ReactNativeWebView && window.ReactNativeWebView.postMessage(message);
-  //   console.log("received", message);
-  // };
+
 
   return (
     <div className="App">
@@ -23,24 +19,6 @@ export default function Success() {
         <MainDash5 />
       </div>
     </div>
-    //   <div className="center">
-    //   <Card.Group>
-    //     <Card className="cards">
-    //       <Card.Content>
-    //         <Card.Header>Successful! 🥳</Card.Header>
-    //         <Card.Description>
-    //           <strong></strong>
-    //         </Card.Description>
-    //       </Card.Content>
-    //       <Card.Content extra>
-    //         <div className="ui two buttons">
-    //           <Button basic color="green" onClick={sendMessagetoSuccessful}>
-    //             Done
-    //           </Button>
-    //         </div>
-    //       </Card.Content>
-    //     </Card>
-    //   </Card.Group>
-    // </div>
+  
   );
 }
