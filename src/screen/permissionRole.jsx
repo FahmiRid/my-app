@@ -3,6 +3,7 @@ import "../styles/PermissionTable.css";
 import SideNav from "./SideNav";
 // import Axios from "axios";
 import { fetchPermissions, storeData } from "./api/usePermissionRole";
+import handlePermissionChange from "./functions/handlePermissionChange";
 
 const PermissionTable = () => {
   const [permissions, setPermissions] = useState([]);
@@ -61,41 +62,11 @@ const PermissionTable = () => {
     );
   };
 
-  const handlePermissionChange = (permission, type) => {
-    const updatedPermissions = [...permissions];
-    const updatedPermission = updatedPermissions.find(
-      (p) => p.permission_id === permission.permission_id
-    );
-    if (updatedPermission) {
-      if (type === 'UD') {
-        // Toggle both 'U' and 'D' together
-        updatedPermission.U = updatedPermission.U === 1 ? 0 : 1;
-        updatedPermission.D = updatedPermission.D === 1 ? 0 : 1;
-      } else {
-        // Toggle the selected permission type (e.g., 'C', 'R', 'A')
-        updatedPermission[type] = updatedPermission[type] === 1 ? 0 : 1;
-      }
-  
-      // Toggle child permissions if they exist
-      if (childPermissions[permission.permission_id]) {
-        childPermissions[permission.permission_id].forEach((childId) => {
-          const childPermission = updatedPermissions.find(
-            (p) => p.permission_id === childId
-          );
-          if (childPermission) {
-            if (type === 'UD') {
-              childPermission.U = updatedPermission.U;
-              childPermission.D = updatedPermission.D;
-            } else {
-              childPermission[type] = updatedPermission[type];
-            }
-          }
-        });
-      }
-  
-      setPermissions(updatedPermissions);
-    }
+  const handlePermissionChange1 = (permission, type) => {
+    // Call the imported function
+    handlePermissionChange(permissions, childPermissions, permission, type, setPermissions);
   };
+
   
 
   return (
@@ -144,7 +115,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.C === 1}
-                          onChange={() => handlePermissionChange(permission, 'C')}
+                          onChange={() => handlePermissionChange1(permission, 'C')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -154,7 +125,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.U || permission.D === 1}
-                          onChange={() => handlePermissionChange(permission, 'UD')}
+                          onChange={() => handlePermissionChange1(permission, 'UD')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -164,7 +135,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.R === 1}
-                          onChange={() => handlePermissionChange(permission, 'R')}
+                          onChange={() => handlePermissionChange1(permission, 'R')}
                         />
                         <div className="checkmark"></div>
                       </label>
@@ -174,7 +145,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.A === 1}
-                          onChange={() => handlePermissionChange(permission, 'A')}
+                          onChange={() => handlePermissionChange1(permission, 'A')}
                         />
                         <div className="checkmark"></div>
                       </label>
