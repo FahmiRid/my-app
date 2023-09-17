@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/PermissionTable.css";
 import SideNav from "./SideNav";
-import Axios from "axios";
+// import Axios from "axios";
+import { fetchPermissions, storeData } from "./api/usePermissionRole";
 
 const PermissionTable = () => {
   const [permissions, setPermissions] = useState([]);
@@ -10,16 +11,12 @@ const PermissionTable = () => {
   const username = "fahmi";
 
   useEffect(() => {
-    const apiUrl = "http://localhost:5000/salesforce/user/role/permission/list";
-
-    Axios.post(apiUrl, {
-      product_line_id: 1,
-      role_id: 1,
-    })
-      .then(response => {
-        setPermissions(response.data.data.list);
+    // Fetch permissions using the API function
+    fetchPermissions()
+      .then((list) => {
+        setPermissions(list);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching permissions:", error);
       });
   }, []);
@@ -41,17 +38,17 @@ const PermissionTable = () => {
   }, [permissions]);
 
   const handleDataSubmit = () => {
-    const apiUrl = "http://localhost:5000/api/storeData";
-
+    // Prepare the data to send
     const dataToSend = {
       permissionId: permissions,
     };
 
-    Axios.post(apiUrl, dataToSend)
-      .then(response => {
-        console.log("Data stored successfully:", response.data);
+    // Call the API function to store data
+    storeData(dataToSend)
+      .then((response) => {
+        console.log("Data stored successfully:", response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error storing data:", error);
       });
   };
@@ -64,41 +61,21 @@ const PermissionTable = () => {
     );
   };
 
-  // // Function to handle checking/unchecking parent and child permissions
-  // const handlePermissionChange = permission => {
-  //   const updatedPermissions = [...permissions];
-  //   const updatedPermission = updatedPermissions.find(
-  //     p => p.permission_id === permission.permission_id
-  //   );
-  //   if (updatedPermission) {
-  //     // Toggle the parent permission
-  //     updatedPermission.C = updatedPermission.C === 1 ? 0 : 1;
-
-  //     // Toggle child permissions if they exist
-  //     if (childPermissions[permission.permission_id]) {
-  //       childPermissions[permission.permission_id].forEach(childId => {
-  //         const childPermission = updatedPermissions.find(
-  //           p => p.permission_id === childId
-  //         );
-  //         if (childPermission) {
-  //           childPermission.C = updatedPermission.C;
-  //         }
-  //       });
-  //     }
-
-  //     setPermissions(updatedPermissions);
-  //   }
-  // };
-
   const handlePermissionChange = (permission, type) => {
     const updatedPermissions = [...permissions];
     const updatedPermission = updatedPermissions.find(
       (p) => p.permission_id === permission.permission_id
     );
     if (updatedPermission) {
-      // Toggle the selected permission type (e.g., 'C', 'R', 'U', 'D', 'A')
-      updatedPermission[type] = updatedPermission[type] === 1 ? 0 : 1;
-
+      if (type === 'UD') {
+        // Toggle both 'U' and 'D' together
+        updatedPermission.U = updatedPermission.U === 1 ? 0 : 1;
+        updatedPermission.D = updatedPermission.D === 1 ? 0 : 1;
+      } else {
+        // Toggle the selected permission type (e.g., 'C', 'R', 'A')
+        updatedPermission[type] = updatedPermission[type] === 1 ? 0 : 1;
+      }
+  
       // Toggle child permissions if they exist
       if (childPermissions[permission.permission_id]) {
         childPermissions[permission.permission_id].forEach((childId) => {
@@ -106,14 +83,20 @@ const PermissionTable = () => {
             (p) => p.permission_id === childId
           );
           if (childPermission) {
-            childPermission[type] = updatedPermission[type];
+            if (type === 'UD') {
+              childPermission.U = updatedPermission.U;
+              childPermission.D = updatedPermission.D;
+            } else {
+              childPermission[type] = updatedPermission[type];
+            }
           }
         });
       }
-
+  
       setPermissions(updatedPermissions);
     }
   };
+  
 
   return (
     <div>
@@ -171,7 +154,7 @@ const PermissionTable = () => {
                         <input
                           type="checkbox"
                           checked={permission.U || permission.D === 1}
-                          onChange={() => handlePermissionChange(permission, 'U')}
+                          onChange={() => handlePermissionChange(permission, 'UD')}
                         />
                         <div className="checkmark"></div>
                       </label>
