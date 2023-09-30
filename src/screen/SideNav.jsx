@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "../styles/sideNavStyle.css";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+
 
 const SideNav = ({ username }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,11 +11,16 @@ const SideNav = ({ username }) => {
   const toggleNav = () => {
     setIsOpen(!isOpen);
   };
+  const [showPermissionDropdown, setShowPermissionDropdown] = useState(false);
+
+  const togglePermissionDropdown = () => {
+    setShowPermissionDropdown(!showPermissionDropdown);
+  };
 
   const handleLogoutToogle = () => {
-     
+
     navigate("/");
- 
+
   }
 
   const handleHomeToogle = () => {
@@ -25,8 +33,8 @@ const SideNav = ({ username }) => {
     }
   };
 
- const handleUserListToogle = () => {
-      navigate("/userList");
+  const handleUserListToogle = () => {
+    navigate("/userList");
   };
 
   const handleContentToogle = () => {
@@ -35,28 +43,30 @@ const SideNav = ({ username }) => {
 
   const handlePermissionRoleToogle = () => {
     if (username === "fahmi") {
-      navigate("/permissionRole");
+      togglePermissionDropdown();
     } else {
       return null;
     }
-
   };
 
-  const handleAddRoleToogle = () => {
-    if (username === 'fahmi') {
-      navigate("/UserPermissionPage");
-    }
-    else {
-      return null;
-    }
-    
-  }
+
+  const handleAddRolePermission = () => {
+    navigate("/permissionRole");
+    togglePermissionDropdown();
+  };
+
+  const handleRoleList = () => {
+    navigate("/RoleList");
+    togglePermissionDropdown();
+  };
+
 
   // console.log("username ==>", username);x`
   return (
     <div>
       <div className={`sidenav ${isOpen ? "open" : ""}`}>
         <button className="toggle-btn" onClick={toggleNav}>
+        <FontAwesomeIcon icon={isOpen ? "times" : "bars"} />
           <i className={`fas ${isOpen ? "fa-times" : "fa-bars"}`} />
         </button>
         <div className="nav-links">
@@ -64,15 +74,27 @@ const SideNav = ({ username }) => {
 
           <button onClick={handleHomeToogle}>Home</button>
 
-          <button onClick={handlePermissionRoleToogle}>Permission Role</button>
+          <div className="dropdown">
+            <button onClick={handlePermissionRoleToogle}>
+              Permission Role <FontAwesomeIcon icon={faCaretDown} />
+            </button>
+            {showPermissionDropdown && (
+              <div className="dropdown-content">
+                <button onClick={handleAddRolePermission}>
+                  <FontAwesomeIcon icon="plus" /> Add Role Permission
+                </button>
+                <button onClick={handleRoleList}>
+                  <FontAwesomeIcon icon="list" /> Role List
+                </button>
+              </div>
+            )}
+          </div>
 
           <button onClick={handleContentToogle}>Content</button>
 
           <button onClick={handleUserListToogle}>User List</button>
 
-          <button onClick={handleAddRoleToogle}>User Permission Roles</button>
-
-          <button onClick={handleLogoutToogle}>Logout</button> 
+          <button onClick={handleLogoutToogle}>Logout</button>
         </div>
       </div>
     </div>
