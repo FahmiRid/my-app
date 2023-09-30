@@ -1,0 +1,71 @@
+/* Apply some basic styling to the table */
+.role-list table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 40em;
+  }
+  
+  /* Style the table header */
+  .role-list th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Style the table rows */
+  .role-list tr {
+    border: 1px solid #ddd;
+  }
+  
+  /* Style alternating rows with different background colors for better readability */
+  .role-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style the table data cells */
+  .role-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Add some margin to the table header */
+  .role-list h2 {
+    margin-top: 20px;
+  }
+  
+
+  /* Style the "Modify" and "Delete" buttons */
+.role-list .modify-button, .role-list .delete-button {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px; /* Add spacing between buttons */
+}
+
+/* Hover effect for buttons */
+.role-list .modify-button:hover, .role-list .delete-button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
+/* Style the "Delete" button */
+.role-list .delete-button {
+  background-color: #ff0000; /* Red background color */
+  color: #fff; /* Button text color */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px; /* Add spacing between buttons */
+}
+
+/* Hover effect for buttons */
+.role-list .delete-button:hover {
+  background-color: #cc0000; /* Darker red background color on hover */
+}
+
