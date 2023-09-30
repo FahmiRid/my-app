@@ -8,7 +8,9 @@ import handlePermissionChange from "./functions/handlePermissionChange";
 const PermissionTable = () => {
   const [permissions, setPermissions] = useState([]);
   const [expandedPermissions, setExpandedPermissions] = useState([]);
-  const [childPermissions, setChildPermissions] = useState({}); // State for child permissions
+  const [childPermissions, setChildPermissions] = useState({});
+  const [roleName, setRoleName] = useState('');
+  const [productLine, setProductLine] = useState('');
   const username = "fahmi";
 
   useEffect(() => {
@@ -41,6 +43,8 @@ const PermissionTable = () => {
   const handleDataSubmit = () => {
     // Prepare the data to send
     const dataToSend = {
+      roleName,
+      productLine,
       permissionId: permissions,
     };
 
@@ -67,7 +71,7 @@ const PermissionTable = () => {
     handlePermissionChange(permissions, childPermissions, permission, type, setPermissions);
   };
 
-  
+
 
   return (
     <div>
@@ -290,6 +294,22 @@ const PermissionTable = () => {
               ))}
           </tbody>
         </table>
+        <div className="form-container">
+          <label htmlFor="roleName">Role Name:</label>
+          <input
+            type="text"
+            id="roleName"
+            value={roleName}
+            onChange={(e) => setRoleName(e.target.value)}
+          />
+          <label htmlFor="productLine">Product Line:</label>
+          <input
+            type="text"
+            id="productLine"
+            value={productLine}
+            onChange={(e) => setProductLine(e.target.value)}
+          />
+        </div>
         <div>
           <button onClick={handleDataSubmit}>Submit</button>
         </div>
