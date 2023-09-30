@@ -1,7 +1,7 @@
+// import Sidebar from "./components/Sidebar";
+// import MainDash from "./components/MainDash/MainDash";
+// import RightSide from "./components/RigtSide/RightSide";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
-import MainDash from "./components/MainDash/MainDash";
-import RightSide from "./components/RigtSide/RightSide";
 import PermissionTable from "./screen/permissionRole";
 import Login from "./screen/Login";
 import StaffPage from "./screen/staffPage";
@@ -16,6 +16,8 @@ import Admin2 from "./screen/Admin2";
 import Admin3 from "./screen/Admin3";
 import Admin4 from "./screen/Admin4";
 import Success from "./screen/successfull";
+import RoleList from "./screen/roleList";
+import RoleDetails from "./screen/roleDetails";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -40,7 +42,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/staffPage" element={<StaffPage />} />
             <Route path="/userList" element={<UserList />} />
+            <Route path="/RoleList" element={<RoleList />} />
             <Route path="/addRole" element={<Role />} />
+            <Route path="/roleDetails" element={<RoleDetails />} />
             <Route path="/register" element={<Register />} />
             <Route path="/SideNav2" element={<SideNav2 />} />
             <Route path="/content" element={<Content />} />
