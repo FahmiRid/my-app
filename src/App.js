@@ -32,7 +32,7 @@ function App() {
           <RightSide /> */}
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Admin />} />
             <Route path="/home" element={<Home />} />
             {/* {isAllowed && (  
         )} */}
