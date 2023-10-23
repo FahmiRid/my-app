@@ -8,7 +8,7 @@ function UserList() {
 
   return (
     <div>
-      <SideNav username={username} />
+      {/* <SideNav username={username} /> */}
       <div className="center">
         <h1 style={{ color: "black" }}>User List</h1>
         <p>This is the user list page.</p>

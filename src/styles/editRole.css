@@ -1,0 +1,60 @@
+/* Edit Modal Container */
+.edit-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with transparency */
+  }
+  
+  /* Background Content (blurred when the modal is open) */
+  .background-content {
+    filter: blur(5px); /* Adjust the blur radius to your liking */
+  }
+  
+  /* Edit Modal Content */
+  .edit-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Adjust the width to your needs */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Close Button (customize as needed) */
+  .edit-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /* Save Button (customize as needed) */
+  .save-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  /* Close Button (customize as needed) */
+  .close-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  

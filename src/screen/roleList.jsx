@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SideNav from './SideNav';
 import '../styles/rolelist.css'
 import RoleDetails from './roleDetails';
-
+import EditRoleModal from './EditRoleModal';
 export default function RoleList() {
   const username = 'fahmi';
 
@@ -10,6 +10,8 @@ export default function RoleList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rolePermissions, setRolePermissions] = useState([]);
   const [selectedRolePermission, setSelectedRolePermission] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedEditRolePermission, setSelectedEditRolePermission] = useState(null);
 
 
   useEffect(() => {
@@ -37,6 +39,22 @@ export default function RoleList() {
   // Function to close the modal
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openEditModal = (rolePermission) => {
+    setSelectedEditRolePermission(rolePermission);
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const saveEditModal = () => {
+    // Implement the logic to save changes made in the Edit modal
+    // This may involve making API requests or updating state.
+    // After saving, you can close the modal.
+    closeEditModal();
   };
 
   return (
@@ -71,12 +89,26 @@ export default function RoleList() {
                   <button className="modify-button" onClick={() => openModal(rolePermission)}>
                     View
                   </button>
-                  <button class="delete-button">Delete</button>
+                  <button className="delete-button">Delete</button>
+                  <button className="edit-button" onClick={() => openEditModal(rolePermission)}>
+                    Edit
+                  </button>
                 </td>
               </tr>
             ))}
+
           </tbody>
         </table>
+        <div>
+          {isEditModalOpen && (
+            <EditRoleModal
+              rolePermission={selectedEditRolePermission}
+              onClose={closeEditModal}
+              onSave={saveEditModal}
+
+            />
+          )}
+        </div>
       </div>
       {isModalOpen && (
         <RoleDetails
@@ -84,6 +116,8 @@ export default function RoleList() {
           onClose={closeModal}
         />
       )}
+
+
 
     </div >
   );

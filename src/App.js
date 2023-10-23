@@ -18,6 +18,7 @@ import Admin4 from "./screen/Admin4";
 import Success from "./screen/successfull";
 import RoleList from "./screen/roleList";
 import RoleDetails from "./screen/roleDetails";
+import EditRoleModal from "./screen/EditRoleModal";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/RoleList" element={<RoleList />} />
             <Route path="/addRole" element={<Role />} />
             <Route path="/roleDetails" element={<RoleDetails />} />
+            <Route path="/roleEdit" element={<EditRoleModal />} />
             <Route path="/register" element={<Register />} />
             <Route path="/SideNav2" element={<SideNav2 />} />
             <Route path="/content" element={<Content />} />

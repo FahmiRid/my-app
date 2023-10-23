@@ -9,6 +9,7 @@ function UserTable() {
   const [selectedRole, setSelectedRole] = useState("all");
   const usersPerPage = 5;
   const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -16,7 +17,7 @@ function UserTable() {
 
   async function fetchUsers() {
     try {
-      const response = await fetch("/users.json"); // Replace with the actual path to your users.json file
+      const response = await fetch("http://localhost:5000/api/userslist");
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -24,15 +25,50 @@ function UserTable() {
     }
   }
 
-  const filteredUsers = users.filter(user => {
-    if (selectedRole !== "all" && user.role !== selectedRole) {
+  const filteredUsers = users.filter((user) => {
+    if (selectedRole !== "all" && !user.role.includes(selectedRole)) {
       return false;
     }
-    if (searchTerm !== "" && !user.role.includes(searchTerm) && !user.username.includes(searchTerm)) {
+    if (
+      searchTerm !== "" &&
+      (!user.role.includes(searchTerm) && !user.username.includes(searchTerm))
+    ) {
       return false;
     }
     return true;
   });
+
+  const displayRoles = (roles) => {
+    if (roles.length === 1) {
+      return roles[0];
+    } else {
+      return (
+        <div className="role-container">
+          <div className="role-label" onClick={toggleDropdown}>
+            {roles[0]}
+            {roles.length > 1 && (
+              <span className="role-count" onClick={toggleDropdown}>
+                +2
+              </span>
+            )}
+          </div>
+          {isOpen && (
+            <div className="role-dropdown">
+              {roles.slice(1).map((role, index) => (
+                <div key={index}>{role}</div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+  };
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div>
@@ -40,7 +76,7 @@ function UserTable() {
         <label>Filter by Role:</label>
         <select
           value={selectedRole}
-          onChange={e => setSelectedRole(e.target.value)}
+          onChange={(e) => setSelectedRole(e.target.value)}
         >
           <option value="all">All</option>
           <option value="admin">Admin</option>
@@ -51,7 +87,7 @@ function UserTable() {
         <input
           type="text"
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search by username"
         />
       </div>
@@ -60,7 +96,7 @@ function UserTable() {
           <tr>
             <th>Username</th>
             <th>Role</th>
-            <th>Action</th> {/* New column for actions */}
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +105,7 @@ function UserTable() {
             .map((user, index) => (
               <tr key={index}>
                 <td>{user.username}</td>
-                <td>{user.role}</td>
+                <td>{displayRoles(user.role)}</td>
                 <td>
                   <a className="editAction">Edit</a>
                 </td>
@@ -77,22 +113,6 @@ function UserTable() {
             ))}
         </tbody>
       </table>
-      <div className="pagination">
-        <button
-          className="transparent-button"
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          <img className="previous" src={PreviousPage} alt="Previous" />
-        </button>
-        <button
-          className="transparent-button"
-          disabled={currentPage === Math.ceil(users.length / usersPerPage)}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          <img className="next" src={NextPage} alt="Next" />
-        </button>
-      </div>
     </div>
   );
 }

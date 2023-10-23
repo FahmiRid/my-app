@@ -10,6 +10,7 @@ const PermissionTable = () => {
   const [expandedPermissions, setExpandedPermissions] = useState([]);
   const [childPermissions, setChildPermissions] = useState({});
   const [roleName, setRoleName] = useState('');
+  const [productLines, setProductLines] = useState([]);
   const [productLine, setProductLine] = useState('');
   const username = "fahmi";
 
@@ -39,6 +40,13 @@ const PermissionTable = () => {
     });
     setChildPermissions(updatedChildPermissions);
   }, [permissions]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/product-lines') // Replace with your API URL
+      .then((response) => response.json())
+      .then((data) => setProductLines(data))
+      .catch((error) => console.error('Error fetching data: ', error));
+  }, []);
 
   const handleDataSubmit = () => {
     // Prepare the data to send
@@ -303,12 +311,18 @@ const PermissionTable = () => {
             onChange={(e) => setRoleName(e.target.value)}
           />
           <label htmlFor="productLine">Product Line:</label>
-          <input
-            type="text"
+          <select
             id="productLine"
-            value={productLine}
+            value={productLine} // Set the value of the select element
             onChange={(e) => setProductLine(e.target.value)}
-          />
+          >
+            <option value="">Select a Product Line</option>
+            {productLines.map((product) => (
+              <option key={product.name} value={product.name}>
+                {product.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <button onClick={handleDataSubmit}>Submit</button>

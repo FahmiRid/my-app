@@ -1,5 +1,6 @@
 import React from 'react';
 import handlePermissionChange from "./functions/handlePermissionChange";
+// import "../styles/roleDetails.css";
 
 export default function roleDetails({ rolePermission, onClose }) {
     const permissions = rolePermission.permissionId;
