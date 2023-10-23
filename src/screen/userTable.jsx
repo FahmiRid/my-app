@@ -39,6 +39,7 @@ function UserTable() {
   });
 
   const displayRoles = (roles) => {
+    const additionalRoles = roles.length - 1
     if (roles.length === 1) {
       return roles[0];
     } else {
@@ -48,7 +49,7 @@ function UserTable() {
             {roles[0]}
             {roles.length > 1 && (
               <span className="role-count" onClick={toggleDropdown}>
-                +2
+                +{additionalRoles}
               </span>
             )}
           </div>
